@@ -7,24 +7,37 @@ import pandas as pd
 st.set_page_config(page_title="Nishtha Dighe | Portfolio", layout="wide")
 
 # Load CSS
-with open('style.css') as f:
-    st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
+try:
+    with open('style.css') as f:
+        st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
+except FileNotFoundError:
+    pass
 
-# Sidebar
+# --- SINGLE SIDEBAR SETUP ---
 with st.sidebar:
-    st.title("📌 Contact")
+    st.title("📌 Contact & Links")
     st.write("📍 Kalyan, Maharashtra")
-    st.markdown("[LinkedIn](https://www.linkedin.com/in/nishtha-dighe-370114325)")
-    st.markdown("[GitHub](https://github.com/nishthadighe-bit)")
-    st.info("SGPI: ~9.28 (SY Data Science)")
+    
+    # Professional Links
+    st.markdown("[🔗 LinkedIn](https://www.linkedin.com/in/nishtha-dighe-370114325)")
+    st.markdown("[📂 GitHub](https://github.com/nishthadighe-bit)")
+    
+    # Academic Quick-View
+    st.info("📊 Current SGPI: ~9.28")
     
     st.write("---")
-    # Resume Download Section - Matching your exact GitHub filename
+    
+    # The Resume Download Button - Using the cleaned filename
     try:
-        with open("NISHTHA DIGHE resume.pdf (1).pdf", "rb") as f:
-            st.download_button("📄 Download My Resume", f, "Nishtha_Dighe_Resume.pdf")
+        with open("NISHTHA DIGHE resume.pdf", "rb") as f:
+            st.download_button(
+                label="📄 Download My Resume",
+                data=f,
+                file_name="Nishtha_Dighe_Resume.pdf",
+                mime="application/pdf"
+            )
     except FileNotFoundError:
-        st.error("Resume file not found. Check filename on GitHub!")
+        st.error("Resume file not found. Ensure 'NISHTHA DIGHE resume.pdf' is in your GitHub folder.")
 
 # Navigation
 selected = option_menu(
@@ -90,25 +103,24 @@ elif selected == "Experience":
     st.write("---")
     st.markdown("### 🏅 Certifications")
     
-    # Matching your new clean filenames
     cert_col1, cert_col2 = st.columns(2)
 
     with cert_col1:
         st.write("**Python for Data Analytics (A+)**")
         try:
             with open("Cert_Python_Nishtha.pdf", "rb") as f:
-                st.download_button("View Certificate", f, "Python_Cert.pdf")
+                st.download_button("View Certificate", f, "Python_Cert.pdf", key="cert_py")
         except: st.warning("Python Cert missing")
 
         st.write("**Fundamentals of Data Science**")
         try:
             with open("Cert_Fundamentals_Nishtha.pdf", "rb") as f:
-                st.download_button("View Certificate", f, "Fundamentals_Cert.pdf")
+                st.download_button("View Certificate", f, "Fundamentals_Cert.pdf", key="cert_fun")
         except: st.warning("Fundamentals Cert missing")
 
     with cert_col2:
         st.write("**Data Manipulation & Visualization**")
         try:
             with open("Cert_Data_Nishtha.pdf", "rb") as f:
-                st.download_button("View Certificate", f, "Data_Manipulation_Cert.pdf")
+                st.download_button("View Certificate", f, "Data_Manipulation_Cert.pdf", key="cert_data")
         except: st.warning("Data Manipulation Cert missing")
