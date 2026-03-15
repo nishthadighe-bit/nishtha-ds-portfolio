@@ -17,6 +17,14 @@ with st.sidebar:
     st.markdown("[LinkedIn](https://www.linkedin.com/in/nishtha-dighe-370114325)")
     st.markdown("[GitHub](https://github.com/nishthadighe-bit)")
     st.info("SGPI: ~9.28 (SY Data Science)")
+    
+    st.write("---")
+    # Resume Download Section
+    try:
+        with open("NISHTHA DIGHE CV (1).pdf", "rb") as f:
+            st.download_button("📄 Download My Resume", f, "Nishtha_Dighe_CV.pdf")
+    except:
+        st.error("Resume file not found")
 
 # Navigation
 selected = option_menu(
@@ -31,8 +39,8 @@ if selected == "Home":
     col1, col2 = st.columns([2, 1])
     with col1:
         st.title("Hi, I'm Nishtha Dighe")
-        st.subheader("Data Science Student | Aspiring Analyst")
-        st.write("Intern at Cloud Counselage Pvt. Ltd. with a passion for AI and Business Intelligence.")
+        st.subheader("Data Science Student | AI Enthusiast")
+        st.write("Data Science Intern at Cloud Counselage Pvt. Ltd. focused on Machine Learning and BI Dashboards.")
     
     st.write("---")
     st.subheader("🌌 My Skill Universe (Interactive 3D)")
@@ -46,22 +54,48 @@ if selected == "Home":
     st.plotly_chart(fig, use_container_width=True)
 
 elif selected == "Projects":
-    st.title("🚀 Featured Projects")
-    
-    # Project 1
-    with st.expander("🌿 AgroGuard AI (National Tech Event 2026)"):
-        st.write("A multi-modal plant pathology system using Deep Learning to diagnose crop diseases.")
-        st.button("View Code", key="agro")
+    st.title("🚀 Project Showcase")
 
-    # Project 2
-    with st.expander("📧 Email Spam Classification"):
-        st.write("Implemented Logistic Regression and Supervised ML to filter spam with high accuracy.")
-        st.button("View Code", key="spam")
+    # Section 1: Power BI Dashboards
+    st.markdown("### 📊 Power BI Dashboards")
+    c1, c2 = st.columns(2)
+    with c1:
+        st.image("dashboard_academic.png", caption="Student Economic & Academic Insights")
+    with c2:
+        st.image("dashboard_trade.png", caption="Global Trade & Trade Balance Analysis")
+
+    st.write("---")
+
+    # Section 2: AI & Machine Learning
+    st.markdown("### 🧠 AI & Deep Learning Applications")
+    
+    with st.expander("🌿 AgroGuard: Intelligent Plant Pathology"):
+        st.image("agroguard_ss.png")
+        st.write("Selected for National Level Tech Presentation. Diagnoses plant diseases using CNNs.")
+        st.link_button("View Code", "https://github.com/nishthadighe-bit")
+
+    with st.expander("👗 Fashion MNIST Classifier"):
+        st.image("fashion_ss.png")
+        st.write("A computer vision tool that classifies apparel using Deep Learning.")
+        st.link_button("View Code", "https://github.com/nishthadighe-bit")
 
 elif selected == "Experience":
-    st.title("💼 Professional Journey")
+    st.title("💼 Professional & Academic Journey")
+    
     st.markdown("### Data Science Intern")
-    st.caption("Cloud Counselage Pvt. Ltd. | Aug 2025 - Present")
-    st.write("- Developing Power BI dashboards for business insights.")
-    st.write("- Building predictive models using Scikit-Learn.")
-    st.write("- **Certification:** L&T EduTech A+ in Programming for Data Analytics.")
+    st.caption("Cloud Counselage Pvt. Ltd. | 2025 - Present")
+    st.write("- Developing interactive Power BI dashboards for market analysis.")
+    st.write("- Implementing predictive models using Scikit-Learn.")
+
+    st.write("---")
+    st.markdown("### 🏅 Certifications")
+    
+    # Python Certification
+    with st.expander("L&T EduTech: Programming For Data Analytics (A+ Grade)"):
+        with open("NISHTHA SANDESH DIGHE_Programming For Data Analytics (Python)  (2).pdf", "rb") as f:
+            st.download_button("View Certificate", f, "Python_Cert.pdf", key="cert1")
+
+    # Fundamentals Certification
+    with st.expander("L&T EduTech: Fundamentals of Data Science"):
+        with open("NISHTHA SANDESH DIGHE_Fundamentals Of Data Science.pdf", "rb") as f:
+            st.download_button("View Certificate", f, "Fundamentals_Cert.pdf", key="cert2")
