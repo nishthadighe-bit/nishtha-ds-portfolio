@@ -19,12 +19,12 @@ with st.sidebar:
     st.info("SGPI: ~9.28 (SY Data Science)")
     
     st.write("---")
-    # Resume Download Section
+    # Resume Download Section - Matching your exact GitHub filename
     try:
-        with open("NISHTHA DIGHE CV (1).pdf", "rb") as f:
-            st.download_button("📄 Download My Resume", f, "Nishtha_Dighe_CV.pdf")
-    except:
-        st.error("Resume file not found")
+        with open("NISHTHA DIGHE resume.pdf (1).pdf", "rb") as f:
+            st.download_button("📄 Download My Resume", f, "Nishtha_Dighe_Resume.pdf")
+    except FileNotFoundError:
+        st.error("Resume file not found. Check filename on GitHub!")
 
 # Navigation
 selected = option_menu(
@@ -90,12 +90,25 @@ elif selected == "Experience":
     st.write("---")
     st.markdown("### 🏅 Certifications")
     
-    # Python Certification
-    with st.expander("L&T EduTech: Programming For Data Analytics (A+ Grade)"):
-        with open("NISHTHA SANDESH DIGHE_Programming For Data Analytics (Python)  (2).pdf", "rb") as f:
-            st.download_button("View Certificate", f, "Python_Cert.pdf", key="cert1")
+    # Matching your new clean filenames
+    cert_col1, cert_col2 = st.columns(2)
 
-    # Fundamentals Certification
-    with st.expander("L&T EduTech: Fundamentals of Data Science"):
-        with open("NISHTHA SANDESH DIGHE_Fundamentals Of Data Science.pdf", "rb") as f:
-            st.download_button("View Certificate", f, "Fundamentals_Cert.pdf", key="cert2")
+    with cert_col1:
+        st.write("**Python for Data Analytics (A+)**")
+        try:
+            with open("Cert_Python_Nishtha.pdf", "rb") as f:
+                st.download_button("View Certificate", f, "Python_Cert.pdf")
+        except: st.warning("Python Cert missing")
+
+        st.write("**Fundamentals of Data Science**")
+        try:
+            with open("Cert_Fundamentals_Nishtha.pdf", "rb") as f:
+                st.download_button("View Certificate", f, "Fundamentals_Cert.pdf")
+        except: st.warning("Fundamentals Cert missing")
+
+    with cert_col2:
+        st.write("**Data Manipulation & Visualization**")
+        try:
+            with open("Cert_Data_Nishtha.pdf", "rb") as f:
+                st.download_button("View Certificate", f, "Data_Manipulation_Cert.pdf")
+        except: st.warning("Data Manipulation Cert missing")
